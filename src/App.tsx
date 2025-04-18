@@ -1,38 +1,63 @@
-import './App.css'
-import Input from './components/Input/Input'
-import Header from './components/Header/Header'
-import { useState } from 'react'
-// import Result from './components/Result/Result';
-import InputValuesTypes from './AppTypes';
-
+import Input from "./components/Input/Input";
+import Header from "./components/Header/Header";
+import { useState } from "react";
+import Result from "./components/Result/Result";
+import InputValuesTypes from "./AppTypes";
+enum InputValues {
+  INITIAL_INVESTMENT = "initialInvestment",
+  ANNUAL_INVESTMENT = "annualInvestment",
+  EXPECTED_RETURN = "expectedReturn",
+  DURATION = "duration",
+}
+enum InputNames {
+  INITIAL_INVESTMENT = "INITIAL INVESTMENT",
+  ANNUAL_INVESTMENT = "ANNUAL INVESTMENT",
+  EXPECTED_RETURN = "EXPECTED RETURN",
+  DURATION = "DURATION",
+}
 
 function App() {
-  const [inputValue,setInputValue]=useState<InputValuesTypes>({
-    initialInvestment:0,
-    annualInvestment:0,
-    expectedReturn:0,
-    duration:0
-  })
-  function handleInputChange(value:string,label:string){
-
-         setInputValue((prev)=>({
-            ...prev,
-            [label]:Number(value),
-         }))
-         console.log(inputValue);
+  const [inputValue, setInputValue] = useState<InputValuesTypes>({
+    initialInvestment: 0,
+    annualInvestment: 0,
+    expectedReturn: 0,
+    duration: 0,
+  });
+  function handleInputChange(value: string, label: string) {
+    setInputValue((prev) => ({
+      ...prev,
+      [label]: Number(value),
+    }));
+    console.log(inputValue);
   }
   return (
     <main>
-      <Header/>
-      <div  className='input-group'>
-        <Input name="INITIAL INVESTMENT" label='initialInvestment'  onChangeEvent={handleInputChange}/>
-        <Input name="ANNUAL INVESTMENT" label='annualInvestment' onChangeEvent={handleInputChange}/>
-        <Input name="EXPECTED RETURN" label="expectedReturn" onChangeEvent={handleInputChange}/>
-        <Input name="DURATION" label='duration' onChangeEvent={handleInputChange}/>
+      <Header />
+      <div className="input-group">
+        <Input
+          name={InputNames.INITIAL_INVESTMENT}
+          label={InputValues.INITIAL_INVESTMENT}
+          onChangeEvent={handleInputChange}
+        />
+        <Input
+          name={InputValues.ANNUAL_INVESTMENT}
+          label={InputValues.ANNUAL_INVESTMENT}
+          onChangeEvent={handleInputChange}
+        />
+        <Input
+          name={InputValues.EXPECTED_RETURN}
+          label={InputValues.EXPECTED_RETURN}
+          onChangeEvent={handleInputChange}
+        />
+        <Input
+          name={InputValues.DURATION}
+          label={InputValues.DURATION}
+          onChangeEvent={handleInputChange}
+        />
       </div>
-      {/* <Result renderValue={inputValue}/> */}
+      <Result renderValue={inputValue} />
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
