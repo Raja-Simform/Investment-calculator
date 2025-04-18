@@ -3,19 +3,7 @@ import Header from "./components/Header/Header";
 import { useState } from "react";
 import Result from "./components/Result/Result";
 import InputValuesTypes from "./AppTypes";
-enum InputValues {
-  INITIAL_INVESTMENT = "initialInvestment",
-  ANNUAL_INVESTMENT = "annualInvestment",
-  EXPECTED_RETURN = "expectedReturn",
-  DURATION = "duration",
-}
-enum InputNames {
-  INITIAL_INVESTMENT = "INITIAL INVESTMENT",
-  ANNUAL_INVESTMENT = "ANNUAL INVESTMENT",
-  EXPECTED_RETURN = "EXPECTED RETURN",
-  DURATION = "DURATION",
-}
-
+import {InputNames,InputValues} from './constants/typesOfInput.constant'
 function App() {
   const [inputValue, setInputValue] = useState<InputValuesTypes>({
     initialInvestment: 0,
@@ -24,12 +12,13 @@ function App() {
     duration: 0,
   });
   function handleInputChange(value: string, label: string) {
+   
     setInputValue((prev) => ({
       ...prev,
       [label]: Number(value),
     }));
-    console.log(inputValue);
   }
+ 
   return (
     <main>
       <Header />
